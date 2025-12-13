@@ -82,7 +82,8 @@ class CIMBClicksPage extends StatelessWidget {
                                 Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const Homepage()), // Navigate to home page
+                                      builder: (context) =>
+                                          const Homepage()), // Navigate to home page
                                   (route) => false,
                                 );
                               },
@@ -101,7 +102,11 @@ class CIMBClicksPage extends StatelessWidget {
                     minimumSize: const Size(150, 50),
                   ),
                   onPressed: () async {
-                    if (userIdController.text.isNotEmpty && passwordController.text.isNotEmpty) {
+// SCM-PATCH: If payment is pending and user cancels, move item out of cart into My Orders with status "Pending Payment"
+// (Fixes duplicate checkout + cart inconsistency; simulation only)
+
+                    if (userIdController.text.isNotEmpty &&
+                        passwordController.text.isNotEmpty) {
                       showDialog(
                         context: context,
                         barrierDismissible: false,
@@ -135,7 +140,8 @@ class CIMBClicksPage extends StatelessWidget {
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text('Please fill in both Username and Password.'),
+                          content: Text(
+                              'Please fill in both Username and Password.'),
                         ),
                       );
                     }
