@@ -103,7 +103,7 @@ class CIMBClicksPage extends StatelessWidget {
                   ),
                   onPressed: () async {
 // SCM-PATCH: If payment is pending and user cancels, move item out of cart into My Orders with status "Pending Payment"
-// (Fixes duplicate checkout + cart inconsistency; simulation only)
+// (Fixes duplicate checkout + cart inconsistency; simulation purposes only)
 
                     if (userIdController.text.isNotEmpty &&
                         passwordController.text.isNotEmpty) {
