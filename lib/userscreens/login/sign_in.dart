@@ -70,6 +70,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 const Spacer(),
                 // Title with Gesture Detector for hidden gesture
                 GestureDetector(
+// SCM-MAJOR: Remove hidden long-press admin entry and replace with proper RBAC
+// Breaking change: authentication and authorization flow will be refactored (simulation only)
                   onLongPress: () {
                     // Navigate to Admin Login Screen on long press
                     Navigator.push(
