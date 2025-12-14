@@ -95,11 +95,16 @@ class MyOrdersPage extends StatelessWidget {
     final currentStatus = order['status'] ?? 'Accepted';
     final isCancelled = order['isCancelled'] ?? false;
 
+// SCM-MINOR: Extend tracking stages to include "Pending Payment" and "Out for Delivery" (UI timeline enhancement)
+// Note: trivial comment change only for SCM simulation (feature not fully implemented)
+    final processStages = ["Accepted", "Processing", "Ready", "Completed"];
+
     final processStages = ["Accepted", "Processing", "Ready", "Completed"];
     final steps = processStages.map((stage) {
       return OrderStepData(
         title: stage,
-        isCompleted: processStages.indexOf(currentStatus) >= processStages.indexOf(stage),
+        isCompleted: processStages.indexOf(currentStatus) >=
+            processStages.indexOf(stage),
       );
     }).toList();
 
@@ -137,8 +142,7 @@ class MyOrdersPage extends StatelessWidget {
                   'Order Progress:',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
-              if (!isCancelled)
-                const SizedBox(height: 10),
+              if (!isCancelled) const SizedBox(height: 10),
               if (!isCancelled)
                 Column(
                   children: List.generate(steps.length, (index) {
@@ -151,14 +155,16 @@ class MyOrdersPage extends StatelessWidget {
                             step.isCompleted
                                 ? Icons.check_circle
                                 : Icons.radio_button_unchecked,
-                            color: step.isCompleted ? Colors.green : Colors.grey,
+                            color:
+                                step.isCompleted ? Colors.green : Colors.grey,
                           ),
                           const SizedBox(width: 10),
                           Text(
                             step.title,
                             style: TextStyle(
                               fontSize: 14,
-                              color: step.isCompleted ? Colors.black : Colors.grey,
+                              color:
+                                  step.isCompleted ? Colors.black : Colors.grey,
                             ),
                           ),
                         ],
